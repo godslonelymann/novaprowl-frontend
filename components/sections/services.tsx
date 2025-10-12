@@ -6,6 +6,11 @@ const services = [
     title: "Predictive Models",
     desc: "Forecast trends with reliable machine learning techniques.",
   },
+   {
+    icon: <Link2 className="w-6 h-6 text-[#00A4B4]" />,
+    title: "Seamless Integration",
+    desc: "Connect our solutions with your existing data platforms effortlessly.",
+  },
   {
     icon: <BarChart3 className="w-6 h-6 text-[#00A4B4]" />,
     title: "Efficient Data Analysis",
@@ -15,11 +20,6 @@ const services = [
     icon: <LayoutDashboard className="w-6 h-6 text-[#00A4B4]" />,
     title: "Custom Dashboards",
     desc: "Tailored tools to visualize what matters most to you.",
-  },
-  {
-    icon: <Link2 className="w-6 h-6 text-[#00A4B4]" />,
-    title: "Seamless Integration",
-    desc: "Connect our solutions with your existing data platforms effortlessly.",
   },
 ];
 
@@ -40,15 +40,15 @@ export default function Services() {
 
       {/* ===== Heading ===== */}
       <h2
-        className="text-5xl md:text-6xl font-bold leading-tight max-w-4xl mx-auto text-transparent bg-clip-text"
+        className="text-3xl md:text-6xl font-bold leading-tight max-w-4xl mx-auto text-transparent bg-clip-text"
         style={{
           backgroundImage:
-            "linear-gradient(to top, #5c5f64ff 0%, #374151 50%, #111827b8 100%)",
+            "linear-gradient(to bottom, #606469ff 0%, #374151 50%, #111827 100%)",
         }}
       >
         Our Services
       </h2>
-      <p className="mt-3 text-gray-600 font-medium">
+      <p className="mt-3 text-gray-600 font-medium text-[14px] md:text-lg">
         Smart Analytics Solutions for Every Business
       </p>
 
@@ -74,13 +74,13 @@ export default function Services() {
               <div className="p-3 rounded-xl bg-white shadow-sm border border-gray-100">
                 {s.icon}
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 leading-tight">
+              <h3 className="text-[15px] md:text-2xl font-semibold text-gray-900 leading-tight">
                 {s.title}
               </h3>
             </div>
 
             {/* description */}
-            <p className="text-[15px] text-gray-600 leading-relaxed tracking-[0.01em]">
+            <p className=" text-sm md:text-lg text-gray-600 leading-relaxed tracking-[0.01em] text-center sm:text-left">
               {s.desc}
             </p>
           </div>

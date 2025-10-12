@@ -1,3 +1,4 @@
+"use client";
 import Button from "../ui/button";
 
 export default function CTA() {
@@ -20,10 +21,10 @@ export default function CTA() {
       />
 
       {/* headline */}
-      <h2 className="text-5xl md:text-6xl font-bold leading-tight max-w-4xl mx-auto text-transparent bg-clip-text"
+      <h2 className="text-3xl md:text-6xl font-bold leading-tight max-w-4xl mx-auto text-transparent bg-clip-text"
         style={{
           backgroundImage:
-            "linear-gradient(to bottom, #b0b6be 0%, #374151 50%, #111827 100%)",
+            "linear-gradient(to bottom, #606469ff 0%, #374151 50%, #111827 100%)",
         }}>
         <span>
           Ready to transform your data?
@@ -31,7 +32,7 @@ export default function CTA() {
       </h2>
 
       {/* subtext */}
-      <p className="mt-4 text-gray-600 max-w-lg mx-auto text-base md:text-lg leading-relaxed">
+      <p className="mt-4 text-gray-600 max-w-lg mx-auto text-sm md:text-lg leading-relaxed">
         Join hundreds of teams using NovaProwl to unlock predictive insights and
         smarter decision-making.
       </p>
@@ -39,7 +40,8 @@ export default function CTA() {
       {/* CTA buttons */}
       <div className="mt-10 flex flex-wrap justify-center gap-4">
         <Button
-          className=""
+          onClick={() => window.open("https://novaprowl.web.app/", "_self")}
+
           size="lg"
         >
           Get Started

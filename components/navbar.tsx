@@ -6,12 +6,14 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Button from "./ui/button";
+import { label } from "framer-motion/client";
 
 const links = [
-  { href: "#features", label: "Service" },
+  { href: "#services", label: "Services" },
   { href: "#howitworks", label: "How It Works" },
   { href: "#pricing", label: "Pricing" },
   { href: "#contact", label: "Contact" },
+
 
   { href: "#blog", label: "Blog" },
 ];
@@ -31,15 +33,15 @@ export default function Navbar() {
     <>
       {/* Navbar */}
       <header
-        className={`fixed top-0 left-0 w-full z-[1000] transition-all ${
+        className={`px-6 fixed top-0 left-0 w-full z-[1000] transition-all ${
           scrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-white"
         }`}
       >
         <nav className="mx-auto flex max-w-screen-lg items-center justify-between py-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <Image src="/globe.svg" alt="NovaProwl logo" width={28} height={28} />
-            <span className="text-lg font-semibold text-gray-900">NovaProwl</span>
+          <Link href="#hero" className="flex items-center gap-2">
+            <Image src="/logo.png" alt="NovaProwl logo" width={50} height={28} />
+            <span className="text-lg font-semibold text-gray-900"></span>
           </Link>
 
           {/* Desktop links */}
@@ -62,7 +64,9 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex">
-            <Button size="md">Get Started</Button>
+            <Button 
+            onClick={() => window.open("https://novaprowl.web.app/", "_self")}
+            size="md">Get Started</Button>
           </div>
 
           {/* Mobile hamburger */}

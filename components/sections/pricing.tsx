@@ -1,3 +1,5 @@
+"use client";
+
 import Button from "../ui/button";
 import { Check } from "lucide-react";
 
@@ -15,6 +17,7 @@ const plans = [
     ],
     button: "Get Started",
     highlighted: false,
+    link: "https://novaprowl.web.app/", // ✅ added only for Free Trial
   },
   {
     name: "Pro",
@@ -59,15 +62,15 @@ export default function Pricing() {
     >
       {/* Heading */}
       <h2
-        className="text-5xl md:text-6xl font-bold leading-tight max-w-4xl mx-auto text-transparent bg-clip-text"
+        className="text-3xl md:text-6xl font-bold leading-tight max-w-4xl mx-auto text-transparent bg-clip-text"
         style={{
           backgroundImage:
-            "linear-gradient(to top, #5c5f64ff 0%, #374151 50%, #111827b8 100%)",
+            "linear-gradient(to bottom, #606469ff 0%, #374151 50%, #111827 100%)",
         }}
       >
         Pricing Plans
       </h2>
-      <p className="mt-3 text-gray-600 font-medium mb-16">
+      <p className="mt-3 text-gray-600 font-medium mb-16 text-sm md:text-lg">
         Choose the plan that fits your workflow and scale.
       </p>
 
@@ -105,13 +108,23 @@ export default function Pricing() {
               {/* Description */}
               <p className="text-gray-500 mb-6">{plan.description}</p>
 
-              {/* Button */}
+              {/* ✅ Conditional Button */}
               <div className="mb-6">
-                <Button
-                  className={`w-full py-3 rounded-xl text-white font-semibold transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]`}
-                >
-                  {plan.button}
-                </Button>
+                {plan.link ? (
+                  <a href={plan.link} className="block">
+                    <Button
+                      className="w-full py-3 rounded-xl text-white font-semibold transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    >
+                      {plan.button}
+                    </Button>
+                  </a>
+                ) : (
+                  <Button
+                    className="w-full py-3 rounded-xl text-white font-semibold transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                  >
+                    {plan.button}
+                  </Button>
+                )}
               </div>
 
               {/* Divider */}

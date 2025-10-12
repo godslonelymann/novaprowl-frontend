@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 
 // ✅ Import font
 const inter = Inter({
@@ -55,6 +56,17 @@ export default function RootLayout({
         className="bg-gradient-to-br from-black via-[#0B0B0E] to-[#0E1015] text-white antialiased"
       >
         {children}
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            style: {
+              background: "#fff",
+              color: "#111",
+              border: "1px solid #00A4B4",
+              borderRadius: "12px",
+            },
+          }}
+        />
       </body>
     </html>
   );

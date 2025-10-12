@@ -26,7 +26,7 @@ const steps = [
 export default function HowItWorks() {
   return (
     <section
-      id="how-it-works"
+      id="howitworks"
       className="relative mx-auto max-w-screen px-6 py-24 text-center overflow-hidden"
     >
       {/* soft background glow */}
@@ -40,15 +40,15 @@ export default function HowItWorks() {
 
       {/* ===== Heading ===== */}
       <h2
-        className="text-5xl md:text-6xl font-bold leading-tight max-w-4xl mx-auto text-transparent bg-clip-text"
+        className="text-3xl md:text-6xl font-bold leading-tight max-w-4xl mx-auto text-transparent bg-clip-text"
         style={{
           backgroundImage:
-            "linear-gradient(to top, #5c5f64ff 0%, #374151 50%, #111827b8 100%)",
+            "linear-gradient(to bottom, #606469ff 0%, #374151 50%, #111827 100%)",
         }}
       >
         How It Works
       </h2>
-      <p className="mt-3 text-gray-600 font-medium mb-16">
+      <p className="mt-3 text-gray-600 font-medium mb-16 text-sm md:text-lg">
         From raw data to powerful insights — all in four simple steps.
       </p>
 
@@ -75,11 +75,11 @@ export default function HowItWorks() {
                   <div className="p-3 rounded-xl bg-white shadow-sm border border-gray-100">
                     {step.icon}
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900">
+                  <h3 className="text-[15px] md:text-2xl font-semibold text-gray-900">
                     {step.title}
                   </h3>
                 </div>
-                <p className="text-gray-600 text-[15px] leading-relaxed tracking-[0.01em]">
+                <p className="text-gray-600 text-sm md:text-lg leading-relaxed tracking-[0.01em]">
                   {step.desc}
                 </p>
               </div>

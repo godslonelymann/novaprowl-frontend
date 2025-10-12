@@ -34,7 +34,7 @@ export default function Footer() {
               href={link.href}
               className="relative group transition-colors duration-300"
             >
-              <span className="group-hover:text-[#00A4B4] transition-colors duration-300">
+              <span className="group-hover:text-gray-700 transition-colors duration-300 text-sm md:text-base">
                 {link.label}
               </span>
               <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#00A4B4] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full"></span>
@@ -47,7 +47,7 @@ export default function Footer() {
           <a
             href="https://x.com"
             aria-label="Twitter"
-            className="relative group transition-colors duration-300 hover:text-[#00A4B4]"
+            className="relative group transition-colors duration-300 hover:text-black"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -58,13 +58,13 @@ export default function Footer() {
             >
               <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.24 4.24 0 0 0 1.88-2.34 8.48 8.48 0 0 1-2.68 1.03A4.22 4.22 0 0 0 16.11 4a4.23 4.23 0 0 0-4.22 4.22c0 .33.04.66.11.98A12 12 0 0 1 3.15 5.1a4.21 4.21 0 0 0-.57 2.12 4.23 4.23 0 0 0 1.88 3.52 4.24 4.24 0 0 1-1.91-.53v.05a4.23 4.23 0 0 0 3.39 4.14 4.26 4.26 0 0 1-1.9.07 4.23 4.23 0 0 0 3.94 2.93A8.47 8.47 0 0 1 2 19.55a11.95 11.95 0 0 0 6.46 1.9c7.75 0 11.99-6.42 11.99-11.99v-.55A8.4 8.4 0 0 0 24 5.64a8.23 8.23 0 0 1-2.36.65c.85-.5 1.51-1.3 1.82-2.25z" />
             </svg>
-            <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#00A4B4] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full"></span>
+            {/* <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#00A4B4] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full"></span> */}
           </a>
 
           <a
             href="https://linkedin.com"
             aria-label="LinkedIn"
-            className="relative group transition-colors duration-300 hover:text-[#00A4B4]"
+            className="relative group transition-colors duration-300 hover:text-black"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
