@@ -1,6 +1,14 @@
 import { NextResponse } from "next/server";
 import Razorpay from "razorpay";
 
+export async function GET() {
+  return new Response(
+    JSON.stringify({ success: false, message: "Method Not Allowed" }),
+    { status: 405, headers: { "Content-Type": "application/json" } }
+  );
+}
+
+
 export async function POST(req: Request) {
   try {
     // 🧩 Step 1: Check if environment variables are loading properly

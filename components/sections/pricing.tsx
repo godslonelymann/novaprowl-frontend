@@ -80,7 +80,7 @@ export default function Pricing() {
   const startRazorpayPayment = async () => {
     try {
       setIsProcessing(true);
-      const res = await fetch("/api/razorpay/order", {
+      const res = await fetch("https://novaprowl-frontend.vercel.app/api/razorpay/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount: 25 }), // in USD (backend maps to INR)
@@ -107,7 +107,7 @@ export default function Pricing() {
         // ✅ Typed Razorpay handler
         handler: async function (response: RazorpayResponse) {
           try {
-            const verifyRes = await fetch("/api/razorpay/verify", {
+            const verifyRes = await fetch("https://novaprowl-frontend.vercel.app/api/razorpay/verify", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({

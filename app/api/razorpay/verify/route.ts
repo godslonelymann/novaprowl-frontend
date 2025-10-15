@@ -3,6 +3,14 @@ import { NextResponse } from "next/server";
 import crypto from "crypto";
 import { Resend } from "resend";
 
+export async function GET() {
+  return new Response(
+    JSON.stringify({ success: false, message: "Method Not Allowed" }),
+    { status: 405, headers: { "Content-Type": "application/json" } }
+  );
+}
+
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();

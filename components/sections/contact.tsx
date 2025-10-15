@@ -22,7 +22,7 @@ export default function Contact() {
     const loadingToast = toast.loading("Sending message...");
 
     try {
-      const res = await fetch("/api/send-email", {
+      const res = await fetch("https://novaprowl-frontend.vercel.app/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

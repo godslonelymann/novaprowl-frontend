@@ -2,6 +2,14 @@ import { Resend } from "resend";
 import React from "react";
 import { ContactEmail } from "@/components/emails/ContactEmail";
 
+export async function GET() {
+  return new Response(
+    JSON.stringify({ success: false, message: "Method Not Allowed" }),
+    { status: 405, headers: { "Content-Type": "application/json" } }
+  );
+}
+
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // ✅ CORS headers configuration
