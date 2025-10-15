@@ -53,6 +53,7 @@ const plans = [
     name: "Business",
     price: "Let's Chat",
     button: "Let's Chat",
+  
     features: [
       "Everything in Pro plan",
       "Custom integrations & onboarding",
