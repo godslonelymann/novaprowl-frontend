@@ -80,7 +80,7 @@ export default function Services() {
             </div>
 
             {/* description */}
-            <p className=" text-sm md:text-lg text-gray-600 leading-relaxed tracking-[0.01em] text-center sm:text-left">
+            <p className=" text-sm md:text-lg text-gray-600 leading-relaxed tracking-[0.01em] text-left sm:text-left">
               {s.desc}
             </p>
           </div>

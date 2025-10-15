@@ -14,7 +14,7 @@ const steps = [
   {
     icon: <LineChart className="w-6 h-6 text-[#00A4B4]" />,
     title: "Insight Generation",
-    desc: "Get visual dashboards and smart summaries in seconds.",
+    desc: "Get visual dashboards and smart summaries in seconds. Drag, Drop & Prompt your content and command.",
   },
   {
     icon: <Sparkles className="w-6 h-6 text-[#00A4B4]" />,

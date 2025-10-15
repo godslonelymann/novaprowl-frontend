@@ -6,15 +6,12 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Button from "./ui/button";
-import { label } from "framer-motion/client";
 
 const links = [
   { href: "#services", label: "Services" },
   { href: "#howitworks", label: "How It Works" },
   { href: "#pricing", label: "Pricing" },
   { href: "#contact", label: "Contact" },
-
-
   { href: "#blog", label: "Blog" },
 ];
 
@@ -33,15 +30,34 @@ export default function Navbar() {
     <>
       {/* Navbar */}
       <header
-        className={`px-6 fixed top-0 left-0 w-full z-[1000] transition-all ${
-          scrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-white"
-        }`}
+        className={`px-6 fixed top-0 left-0 w-full z-[1000] transition-all duration-500 ${scrolled
+            ? "bg-white/90 backdrop-blur-md shadow-sm"
+            : "bg-white"
+          }`}
       >
-        <nav className="mx-auto flex max-w-screen-lg items-center justify-between py-4">
-          {/* Logo */}
-          <Link href="#hero" className="flex items-center gap-2">
-            <Image src="/logo.png" alt="NovaProwl logo" width={50} height={28} />
-            <span className="text-lg font-semibold text-gray-900"></span>
+        <nav className="mx-auto flex max-w-screen-lg items-center justify-between py-2">
+          {/* ✅ Logo */}
+          <Link href="#hero" className="flex items-center gap-2 h-[60px]">
+            <div className="relative h-full flex items-center">
+              <Image
+                src="/logo3.png"
+                alt="NovaProwl logo"
+                width={25}
+                height={50}
+                priority
+              />
+            </div>
+
+            {/* Hide text on mobile, show on md+ */}
+            <span
+              className="hidden md:inline text-xl md:text-2xl font-bold leading-tight max-w-4xl mx-auto text-transparent bg-clip-text"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to left, #606469ff 0%, #374151 50%, #111827ce 100%)",
+              }}
+            >
+              NovaProwl
+            </span>
           </Link>
 
           {/* Desktop links */}
@@ -55,18 +71,22 @@ export default function Navbar() {
                 <span className="group-hover:text-gray-900 transition-colors duration-300">
                   {link.label}
                 </span>
-                {/* subtle underline animation */}
+                {/* underline animation */}
                 <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#00A4B4] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full"></span>
-
               </a>
             ))}
           </div>
 
           {/* Desktop CTA */}
           <div className="hidden md:flex">
-            <Button 
-            onClick={() => window.open("https://novaprowl.web.app/", "_self")}
-            size="md">Get Started</Button>
+            <Button
+              onClick={() =>
+                window.open("https://novaprowl.web.app/", "_self")
+              }
+              size="md"
+            >
+              Get Started
+            </Button>
           </div>
 
           {/* Mobile hamburger */}
@@ -114,7 +134,12 @@ export default function Navbar() {
               </a>
             ))}
 
-            <Button size="lg" onClick={() => setMenuOpen(false)}>
+            <Button
+              onClick={() =>
+                window.open("https://novaprowl.web.app/", "_self")
+              }
+              size="md"
+            >
               Get Started
             </Button>
           </motion.div>

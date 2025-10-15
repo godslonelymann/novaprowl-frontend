@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     siteName: "NovaProwl",
     images: [
       {
-        url: "/og-image.png",
-        width: 1200,
+        url: "/logo3.png",
+        width: 700,
         height: 630,
         alt: "NovaProwl preview",
       },
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/logo4.png",
   },
 };
 

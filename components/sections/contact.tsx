@@ -32,6 +32,14 @@ export default function Contact() {
 
       if (res.ok) {
         toast.success("Message sent successfully!");
+        // ✅ NEW TOAST HERE
+        setTimeout(() => {
+          toast("Our team will reach out to you as soon as possible. 😊", {
+            
+            duration: 4000,
+          });
+        }, 800);
+
         form.reset();
       } else {
         const result = await res.json();
@@ -73,7 +81,7 @@ export default function Contact() {
         Contact the Team
       </h2>
       <p className="mt-3 text-gray-600 mb-14 max-w-2xl mx-auto text-sm md:text-lg">
-        Have a question, feedback, or collaboration idea? We'd love to hear from you.
+        Have a question, feedback, or collaboration idea? We&apos;d love to hear from you.
       </p>
 
       {/* contact form */}
@@ -88,7 +96,7 @@ export default function Contact() {
               type="text"
               name="name"
               placeholder="Enter your name"
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#00A4B4] focus:border-[#00A4B4] outline-none text-gray-900 placeholder:text-gray-400 transition-all duration-300"
+              className="w-full text-sm px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#00A4B4] focus:border-[#00A4B4] outline-none text-gray-900 placeholder:text-gray-400 transition-all duration-300"
               required
             />
           </div>
@@ -102,7 +110,7 @@ export default function Contact() {
               type="email"
               name="email"
               placeholder="you@company.com"
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#00A4B4] focus:border-[#00A4B4] outline-none text-gray-900 placeholder:text-gray-400 transition-all duration-300"
+              className="w-full px-4 text-sm py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#00A4B4] focus:border-[#00A4B4] outline-none text-gray-900 placeholder:text-gray-400 transition-all duration-300"
               required
             />
           </div>
@@ -116,7 +124,7 @@ export default function Contact() {
               name="message"
               placeholder="Write your message here..."
               rows={4}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#00A4B4] focus:border-[#00A4B4] outline-none text-gray-900 placeholder:text-gray-400 transition-all duration-300 resize-none"
+              className="w-full text-sm px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#00A4B4] focus:border-[#00A4B4] outline-none text-gray-900 placeholder:text-gray-400 transition-all duration-300 resize-none"
               required
             />
           </div>
@@ -133,19 +141,17 @@ export default function Contact() {
       </div>
 
       {/* footer note */}
-     {/* footer note */}
-    <p className="mt-10 text-sm text-gray-500">
+      <p className="mt-10 text-sm text-gray-500">
         Or email us directly at{" "}
-      <a
-        href="https://mail.google.com/mail/?view=cm&fs=1&to=ceo@novaprowl.in"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-[#00A4B4] hover:underline"
-      >
+        <a
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=ceo@novaprowl.in"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#00A4B4] hover:underline"
+        >
           ceo@novaprowl.in
-      </a>
-    </p>
-
+        </a>
+      </p>
     </section>
   );
 }
