@@ -1,5 +1,10 @@
+// ===============================
+// ✅ Razorpay Payment Verification API
+// ===============================
+
+export const dynamic = "force-dynamic";
+
 import { NextResponse } from "next/server";
-// import Razorpay from "razorpay";
 import crypto from "crypto";
 import { Resend } from "resend";
 
@@ -10,19 +15,14 @@ export async function GET() {
   );
 }
 
-
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, email } = body;
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, email } =
+      await req.json();
 
-    console.log("🔍 Verifying payment for:", razorpay_payment_id);
-
-    if (!process.env.RAZORPAY_KEY_SECRET) {
+    if (!process.env.RAZORPAY_KEY_SECRET)
       throw new Error("Razorpay secret missing in environment variables!");
-    }
 
-    // ✅ Step 1: Verify signature
     const sign = razorpay_order_id + "|" + razorpay_payment_id;
     const expectedSign = crypto
       .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
@@ -31,19 +31,19 @@ export async function POST(req: Request) {
 
     if (expectedSign !== razorpay_signature) {
       console.error("❌ Invalid payment signature");
-      return NextResponse.json({ success: false, message: "Invalid signature" }, { status: 400 });
+      return NextResponse.json(
+        { success: false, message: "Invalid signature" },
+        { status: 400 }
+      );
     }
 
-    // ✅ Step 2: Send confirmation emails
+    // ✅ Send emails via Resend
     const resend = new Resend(process.env.RESEND_API_KEY);
     const toTeam = process.env.TO_EMAIL!;
-    // const fromEmail = email || "noreply@novaprowl.in";
+    const from = "NovaProwl <onboarding@resend.dev>";
 
-    console.log("📨 Sending confirmation emails to:", toTeam, "and", email);
-
-    // Send to your team
     await resend.emails.send({
-      from: "NovaProwl Payments <onboarding@resend.dev>",
+      from,
       to: toTeam,
       subject: "New Payment Received - Pro Plan",
       html: `
@@ -54,9 +54,8 @@ export async function POST(req: Request) {
       `,
     });
 
-    // Send to client
     await resend.emails.send({
-      from: "NovaProwl <onboarding@resend.dev>",
+      from,
       to: email,
       subject: "Payment Confirmation - NovaProwl Pro Plan",
       html: `
@@ -74,7 +73,7 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error("❌ Payment verification failed:", error);
     return NextResponse.json(
-      { success: false, message: "Payment verification failed", error: String(error) },
+      { success: false, message: "Verification failed", error: String(error) },
       { status: 500 }
     );
   }

@@ -1,7 +1,23 @@
+// ===============================
+// ✅ Contact Form Email API (Resend)
+// ===============================
+
+export const dynamic = "force-dynamic"; // prevents static export issues
+
 import { Resend } from "resend";
 import React from "react";
 import { ContactEmail } from "@/components/emails/ContactEmail";
 
+// 🧩 Utility for CORS headers
+function corsHeaders() {
+  return {
+    "Access-Control-Allow-Origin": "*", // or your domain e.g. "https://www.novaprowl.in"
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  };
+}
+
+// ✅ GET fallback for safety
 export async function GET() {
   return new Response(
     JSON.stringify({ success: false, message: "Method Not Allowed" }),
@@ -9,19 +25,7 @@ export async function GET() {
   );
 }
 
-
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-// ✅ CORS headers configuration
-function corsHeaders() {
-  return {
-    "Access-Control-Allow-Origin":"*", // ✅ your frontend domain
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
-  };
-}
-
-// ✅ Preflight handler for OPTIONS requests
+// ✅ Preflight handler
 export async function OPTIONS() {
   return new Response(null, { status: 204, headers: corsHeaders() });
 }
@@ -30,15 +34,13 @@ export async function OPTIONS() {
 export async function POST(req: Request) {
   try {
     const { name, email, message } = await req.json();
-
     if (!name || !email || !message) {
       return new Response(
-        JSON.stringify({ success: false, message: "All fields are required." }),
+        JSON.stringify({ success: false, message: "All fields required." }),
         { status: 400, headers: corsHeaders() }
       );
     }
 
-    // Basic sanitization
     const sanitize = (input: string) =>
       String(input).replace(/[<>]/g, "").replace(/script/gi, "").trim();
 
@@ -46,36 +48,15 @@ export async function POST(req: Request) {
     const safeEmail = sanitize(email);
     const safeMessage = sanitize(message);
 
-    if (safeMessage.length > 2000) {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          message: "Message too long (max 2000 chars).",
-        }),
-        { status: 400, headers: corsHeaders() }
-      );
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(safeEmail)) {
-      return new Response(
-        JSON.stringify({ success: false, message: "Invalid email format." }),
-        { status: 400, headers: corsHeaders() }
-      );
-    }
-
     if (!process.env.RESEND_API_KEY || !process.env.TO_EMAIL) {
-      console.error("Missing RESEND_API_KEY or TO_EMAIL in environment.");
+      console.error("Missing Resend config in env.");
       return new Response(
-        JSON.stringify({
-          success: false,
-          message: "Server email config missing.",
-        }),
+        JSON.stringify({ success: false, message: "Server config missing." }),
         { status: 500, headers: corsHeaders() }
       );
     }
 
-    // ✅ Render email content
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const ReactDOMServer = await import("react-dom/server");
     const emailHtml = ReactDOMServer.renderToStaticMarkup(
       React.createElement(ContactEmail, {
@@ -85,25 +66,18 @@ export async function POST(req: Request) {
       })
     );
 
-    // ✅ Send email via Resend
-    const data = await resend.emails.send({
+    const result = await resend.emails.send({
       from: "NovaProwl <onboarding@resend.dev>",
       to: process.env.TO_EMAIL!,
-      subject: `New Contact Message from ${safeName}`,
       replyTo: safeEmail,
+      subject: `New Message from ${safeName}`,
       html: emailHtml,
     });
 
-    if (data.error) {
-      console.error("Resend API Error:", data.error);
-      return new Response(
-        JSON.stringify({ success: false, message: "Failed to send email." }),
-        { status: 500, headers: corsHeaders() }
-      );
-    }
+    if (result.error) throw new Error(result.error.message);
 
     return new Response(
-      JSON.stringify({ success: true, message: "✅ Email sent successfully!" }),
+      JSON.stringify({ success: true, message: "Email sent successfully!" }),
       { status: 200, headers: corsHeaders() }
     );
   } catch (err) {
@@ -111,7 +85,7 @@ export async function POST(req: Request) {
     return new Response(
       JSON.stringify({
         success: false,
-        message: "❌ Internal server error. Try again later.",
+        message: "Internal server error. Try again later.",
       }),
       { status: 500, headers: corsHeaders() }
     );
