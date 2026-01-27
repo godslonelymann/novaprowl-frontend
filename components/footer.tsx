@@ -20,14 +20,14 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Center: Links */}
         <div className="flex flex-wrap justify-center gap-6 text-gray-700">
           {[
-            { href: "#features", label: "Services" },
-            { href: "#pricing", label: "How It Works" },
-            { href: "#how-it-works", label: "Pricing" },
+            { href: "#services", label: "Services" },
+            { href: "#howitworks", label: "How It Works" },
+            { href: "#pricing", label: "Pricing" },
             { href: "#contact", label: "Contact" },
-            { href: "#blog", label: "Blog" },
+            { href: "/privacy-policy", label: "Privacy Policy" },
+            { href: "/terms-of-service", label: "Terms of Service" },
           ].map((link) => (
             <Link
               key={link.href}

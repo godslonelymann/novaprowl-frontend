@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
 
   trailingSlash: true,
 
+  turbopack: {
+    root: __dirname,
+  },
+
   experimental: {
     serverActions: {
       bodySizeLimit: "2mb", // optional but safe for Razorpay payloads

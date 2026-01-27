@@ -62,19 +62,31 @@ export default function Navbar() {
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8 text-lg text-gray-700">
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="relative group transition-colors duration-300"
-              >
-                <span className="group-hover:text-gray-900 transition-colors duration-300">
-                  {link.label}
-                </span>
-                {/* underline animation */}
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#00A4B4] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full"></span>
-              </a>
-            ))}
+            {links.map((link) =>
+              link.href.startsWith("#") ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="relative group transition-colors duration-300"
+                >
+                  <span className="group-hover:text-gray-900 transition-colors duration-300">
+                    {link.label}
+                  </span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#00A4B4] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full"></span>
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="relative group transition-colors duration-300"
+                >
+                  <span className="group-hover:text-gray-900 transition-colors duration-300">
+                    {link.label}
+                  </span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#00A4B4] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full"></span>
+                </Link>
+              )
+            )}
           </div>
 
           {/* Desktop CTA */}
@@ -120,19 +132,33 @@ export default function Navbar() {
               <X size={30} />
             </button>
 
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-lg font-medium relative group transition-all"
-              >
-                <span className="group-hover:text-cyan-500 transition-colors duration-300">
-                  {link.label}
-                </span>
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-cyan-400 to-sky-500 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full"></span>
-              </a>
-            ))}
+            {links.map((link) =>
+              link.href.startsWith("#") ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-lg font-medium relative group transition-all"
+                >
+                  <span className="group-hover:text-cyan-500 transition-colors duration-300">
+                    {link.label}
+                  </span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-cyan-400 to-sky-500 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full"></span>
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-lg font-medium relative group transition-all"
+                >
+                  <span className="group-hover:text-cyan-500 transition-colors duration-300">
+                    {link.label}
+                  </span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-cyan-400 to-sky-500 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-full"></span>
+                </Link>
+              )
+            )}
 
             <Button
               onClick={() =>

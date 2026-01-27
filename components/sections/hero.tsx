@@ -1,11 +1,29 @@
 "use client";
+import { useState, useEffect } from "react";
 import Button from "../ui/button";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+
+const images = [
+  "/1.png",
+  "/2.png",
+  "/3.png",
+  "/4.png",
+];
 
 export default function Hero() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % images.length);
+    }, 3000); // Change slide every 3 seconds
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section
-      id="/"
+      id="hero"
       className="relative mx-auto max-w-screen px-6 pt-32 pb-20 text-center overflow-hidden"
       style={{
         background:
@@ -41,7 +59,7 @@ export default function Hero() {
         size="lg">Get Started</Button>
       </div>
 
-      <div className="mt-14 relative mx-auto max-w-4xl">
+      <div className="mt-14 relative mx-auto max-w-6xl">
         {/* Outer white glow */}
         <div
           className="absolute inset-0 rounded-2xl blur-[40px] opacity-60"
@@ -53,16 +71,41 @@ export default function Hero() {
 
         {/* Main container with clean border & shadow */}
         <div
-          className="relative  overflow-hidden border-[2px] border-white shadow-[0_8px_30px_rgba(0,164,180,0.2),0_4px_20px_rgba(255,255,255,0.6)] bg-white"
+          className="relative overflow-hidden border-[2px] border-white shadow-[0_8px_30px_rgba(0,164,180,0.2),0_4px_20px_rgba(255,255,255,0.6)] bg-white aspect-[1916/972] rounded-xl"
         >
-          <Image
-            src="/hero.png"
-            alt="NovaProwl dashboard preview"
-            width={1600}
-            height={1000}
-            className="w-full h-auto"
-            priority
-          />
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8 }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={images[currentSlide]}
+                alt={`NovaProwl dashboard preview ${currentSlide + 1}`}
+                fill
+                className="object-contain"
+                priority
+                unoptimized
+              />
+            </motion.div>
+          </AnimatePresence>
+          
+          {/* Optional: Slide indicators */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentSlide ? "bg-[#00A4B4] w-6" : "bg-gray-300 hover:bg-gray-400"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
