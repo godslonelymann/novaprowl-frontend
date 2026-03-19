@@ -33,11 +33,11 @@ export default function Pricing() {
             "linear-gradient(to bottom, #606469ff 0%, #374151 50%, #111827 100%)",
         }}
       >
-        Pricing Plans
+        Try NovaProwl Here
       </h2>
 
       <p className="mt-3 text-gray-600 font-medium mb-16 text-sm md:text-lg">
-        Choose the plan that fits your workflow and scale.
+        Work with NovaProwl and see if it fits your workflow and scale.
       </p>
 
       {/* ✅ Centered Single Card */}
