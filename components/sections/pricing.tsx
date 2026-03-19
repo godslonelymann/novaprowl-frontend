@@ -6,9 +6,10 @@ import { Check } from "lucide-react";
 const plan = {
   name: "Business",
   price: "Let's Chat",
-  button: "Let's Chat",
+  button: "Let's Get Started",
+  link: "https://novaprowl.web.app/",
   features: [
-    "Everything in Pro plan",
+    
     "Custom integrations & onboarding",
     "Dedicated account manager",
     "Priority 24/7 Support",
@@ -57,9 +58,11 @@ export default function Pricing() {
             Tailored solutions for enterprise teams.
           </p>
 
-          <Button className="w-full py-3 rounded-xl text-white font-semibold mb-6">
-            {plan.button}
-          </Button>
+          <a href={plan.link} target="_blank" rel="noopener noreferrer">
+            <Button className="w-full py-3 rounded-xl text-white font-semibold mb-6">
+              {plan.button}
+            </Button>
+          </a>
 
           <div className="w-full h-[1px] bg-gray-200 mb-6" />
 
