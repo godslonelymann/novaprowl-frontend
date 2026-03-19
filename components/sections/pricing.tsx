@@ -223,16 +223,7 @@ export default function Pricing() {
                 </span>
               </div>
 
-              {plan.name === "Free Trial" && (
-                <p className="text-gray-500 mb-6">
-                  Try NovaProwl completely free. No payment required.
-                </p>
-              )}
-              {plan.name === "Pro" && (
-                <p className="text-gray-500 mb-6">
-                  Unlock the full power of NovaProwl with unlimited access.
-                </p>
-              )}
+              
               {plan.name === "Business" && (
                 <p className="text-gray-500 mb-6">
                   Tailored solutions for enterprise teams.
